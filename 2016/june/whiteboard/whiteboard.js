@@ -57,7 +57,7 @@
                 blue: 10
             });
         },
-        createMarker(modelURL, markerPosition, markerColor) {
+        createMarker:function(modelURL, markerPosition, markerColor) {
 
             var markerProperties = {
                 type: "Model",
@@ -116,7 +116,7 @@
                     }
                 })
             }
-            
+
             var marker = Entities.addEntity(markerProperties);
 
         },

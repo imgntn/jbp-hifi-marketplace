@@ -11,7 +11,6 @@
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 var ERASER_SCRIPT_URL = Script.resolvePath("eraserEntityScript.js");
-
 var MARKER_SCRIPT_URL = Script.resolvePath("markerEntityScript.js");
 
 Whiteboard = function(spawnPosition, spawnRotation) {
@@ -49,13 +48,12 @@ Whiteboard = function(spawnPosition, spawnRotation) {
         }),
     });
 
-
-
     var whiteboardSurfacePosition = Vec3.sum(whiteboardPosition, {
         x: 0.0,
         y: 0.45,
         z: 0.0
     });
+    
     whiteboardSurfacePosition = Vec3.sum(whiteboardSurfacePosition, Vec3.multiply(-0.02, Quat.getRight(whiteboardRotation)));
     var moveForwardDistance = 0.02;
     whiteboardFrontSurfacePosition = Vec3.sum(whiteboardSurfacePosition, Vec3.multiply(-moveForwardDistance, Quat.getFront(whiteboardRotation)));
