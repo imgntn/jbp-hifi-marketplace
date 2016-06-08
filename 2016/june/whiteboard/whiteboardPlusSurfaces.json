@@ -1,0 +1,109 @@
+{
+    "Entities": [
+        {
+            "clientOnly": 0,
+            "color": {
+                "blue": 200,
+                "green": 10,
+                "red": 200
+            },
+            "created": "2016-03-04T17:56:25Z",
+            "dimensions": {
+                "x": 1.8200000524520874,
+                "y": 1.7999999523162842,
+                "z": 0.0099999997764825821
+            },
+            "id": "{b2ffd3e6-9f5e-4e57-91c8-fcb8b0b2dc89}",
+            "name": "hifi-whiteboardDrawingSurface",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{a9a9b108-5aa6-4795-8c09-ab6c3d820e8f}",
+            "position": {
+                "x": -0.020041000097990036,
+                "y": 0.45001220703125,
+                "z": -0.019985578954219818
+            },
+            "queryAACube": {
+                "scale": 2.5597851276397705,
+                "x": 539.51171875,
+                "y": 494.673828125,
+                "z": 492.2928466796875
+            },
+            "rotation": {
+                "w": 1,
+                "x": -1.52587890625e-05,
+                "y": -1.52587890625e-05,
+                "z": -1.52587890625e-05
+            },
+            "shape": "Cube",
+            "type": "Box",
+            "visible": 0
+        },
+        {
+            "clientOnly": 0,
+            "color": {
+                "blue": 200,
+                "green": 10,
+                "red": 200
+            },
+            "created": "2016-03-04T17:56:25Z",
+            "dimensions": {
+                "x": 1.8200000524520874,
+                "y": 1.7999999523162842,
+                "z": 0.0099999997764825821
+            },
+            "id": "{e8e4dd21-5d58-478f-ba86-eaf216efcbbc}",
+            "name": "hifi-whiteboardDrawingSurface",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{a9a9b108-5aa6-4795-8c09-ab6c3d820e8f}",
+            "position": {
+                "x": -0.019987192004919052,
+                "y": 0.45400944352149963,
+                "z": 0.020008884370326996
+            },
+            "queryAACube": {
+                "scale": 2.5597851276397705,
+                "x": 539.5450439453125,
+                "y": 494.67782592773438,
+                "z": 492.270751953125
+            },
+            "rotation": {
+                "w": 1,
+                "x": -1.52587890625e-05,
+                "y": -1.52587890625e-05,
+                "z": -1.52587890625e-05
+            },
+            "shape": "Cube",
+            "type": "Box",
+            "visible": 0
+        },
+        {
+            "clientOnly": 0,
+            "compoundShapeURL": "https://s3-us-west-1.amazonaws.com/hifi-content/eric/models/whiteboardCollisionHull.obj",
+            "created": "2016-03-04T17:56:25Z",
+            "dimensions": {
+                "x": 1.8600000143051147,
+                "y": 2.7000000476837158,
+                "z": 0.46360000967979431
+            },
+            "id": "{a9a9b108-5aa6-4795-8c09-ab6c3d820e8f}",
+            "modelURL": "https://s3-us-west-1.amazonaws.com/hifi-content/eric/models/Whiteboard-4.fbx",
+            "name": "whiteboard",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "queryAACube": {
+                "scale": 3.3112723827362061,
+                "x": -1.655636191368103,
+                "y": -1.655636191368103,
+                "z": -1.655636191368103
+            },
+            "rotation": {
+                "w": 0.4734722375869751,
+                "x": -1.52587890625e-05,
+                "y": 0.88079655170440674,
+                "z": -1.52587890625e-05
+            },
+            "shapeType": "compound",
+            "type": "Model"
+        }
+    ],
+    "Version": 60
+}
