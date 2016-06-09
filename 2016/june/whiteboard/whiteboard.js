@@ -95,6 +95,9 @@
                 lifetime: 86400,
                 script: MARKER_SCRIPT_URL,
                 userData: JSON.stringify({
+                    'grabbableKey': {
+                        'grabbable': true
+                    },
                     originalPosition: markerPosition,
                     originalRotation: _this.markerRotation,
                     markerColor: markerColor,
@@ -165,6 +168,9 @@
                     'hifiHomeKey': {
                         'reset': true
                     },
+                    'grabbableKey': {
+                        'grabbable': true
+                    },
                     originalPosition: eraserPosition,
                     originalRotation: eraserRotation,
                     wearable: {
@@ -193,6 +199,8 @@
                     }
                 })
             }
+
+            var eraser = Entities.addEntity(eraserProps);
         }
 
     }
