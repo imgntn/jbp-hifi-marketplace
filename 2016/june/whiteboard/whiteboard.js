@@ -1,7 +1,16 @@
+//  Created by James B. Pollack @imgntn 6/8/2016
+//  Copyright 2016 High Fidelity, Inc.
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+//
+
 (function() {
 
     var _this;
-
+    var MARKER_SCRIPT_URL = "http://hifi-content.s3.amazonaws.com/james/whiteboard/markerEntityScript.js";
+    var ERASER_SCRIPT_URL = "http://hifi-content.s3.amazonaws.com/james/whiteboard/eraserEntityScript.js";
 
     Whiteboard = function() {
         _this = this;
@@ -20,11 +29,11 @@
             var props = Entities.getEntityProperties(_this.entityID);
             this.spawnRotation = Quat.safeEulerAngles(props.rotation);
             this.spawnPosition = props.position;
-            this.orientation = Quat.fromPitchYawRollDegrees(spawnRotation.x, spawnRotation.y, spawnRotation.z);
+            this.orientation = Quat.fromPitchYawRollDegrees(this.spawnRotation.x, this.spawnRotation.y, this.spawnRotation.z);
             this.markerRotation = Quat.fromVec3Degrees({
-                x: spawnRotation.x + 10,
-                y: spawnRotation.y - 90,
-                z: spawnRotation.z
+                x: this.spawnRotation.x + 10,
+                y: this.spawnRotation.y - 90,
+                z: this.spawnRotation.z
             });
 
         },
@@ -35,34 +44,34 @@
                 "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/marker-black.fbx",
             ];
 
-            var markerPosition = Vec3.sum(spawnPosition, Vec3.multiply(Quat.getFront(this.orientation), -0.1));
+            var markerPosition = Vec3.sum(_this.spawnPosition, Vec3.multiply(Quat.getFront(_this.orientation), -0.1));
 
-            createMarker(modelURLS[0], markerPosition, {
+            _this.createMarker(modelURLS[0], markerPosition, {
                 red: 10,
                 green: 10,
                 blue: 200
             });
 
-            markerPosition = Vec3.sum(markerPosition, Vec3.multiply(-0.2, Quat.getFront(this.orientation)));
-            createMarker(modelURLS[1], markerPosition, {
+            markerPosition = Vec3.sum(markerPosition, Vec3.multiply(-0.2, Quat.getFront(_this.orientation)));
+            _this.createMarker(modelURLS[1], markerPosition, {
                 red: 200,
                 green: 10,
                 blue: 10
             });
 
-            markerPosition = Vec3.sum(markerPosition, Vec3.multiply(0.4, Quat.getFront(this.orientation)));
-            createMarker(modelURLS[2], markerPosition, {
+            markerPosition = Vec3.sum(markerPosition, Vec3.multiply(0.4, Quat.getFront(_this.orientation)));
+            _this.createMarker(modelURLS[2], markerPosition, {
                 red: 10,
                 green: 10,
                 blue: 10
             });
         },
-        createMarker:function(modelURL, markerPosition, markerColor) {
+        createMarker: function(modelURL, markerPosition, markerColor) {
 
             var markerProperties = {
                 type: "Model",
                 modelURL: modelURL,
-                rotation: this.markerRotation,
+                rotation: _this.markerRotation,
                 shapeType: "box",
                 name: "hifi_model_marker",
                 dynamic: true,
@@ -82,13 +91,11 @@
                     y: 0.027,
                     z: 0.164
                 },
+                lifetime: 86400,
                 script: MARKER_SCRIPT_URL,
                 userData: JSON.stringify({
-                    'hifiHomeKey': {
-                        'reset': true
-                    },
                     originalPosition: markerPosition,
-                    originalRotation: this.markerRotation,
+                    originalRotation: _this.markerRotation,
                     markerColor: markerColor,
                     wearable: {
                         joints: {
@@ -121,19 +128,21 @@
 
         },
         createEraser: function() {
-            var ERASER_MODEL_URL = "atp:/whiteboard/eraser-2.fbx";
 
-            var eraserPosition = Vec3.sum(spawnPosition, Vec3.multiply(Quat.getFront(whiteboardRotation), -0.1));
-            eraserPosition = Vec3.sum(eraserPosition, Vec3.multiply(-0.5, Quat.getRight(whiteboardRotation)));
-            var eraserRotation = this.markerRotation;
+            var ERASER_MODEL_URL = "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/eraser-2.fbx";
+
+            var eraserPosition = Vec3.sum(_this.spawnPosition, Vec3.multiply(Quat.getFront(_this.orientation), -0.1));
+            eraserPosition = Vec3.sum(eraserPosition, Vec3.multiply(-0.5, Quat.getRight(_this.orientation)));
+            var eraserRotation = _this.markerRotation;
 
             var eraserProps = {
                 type: "Model",
-                name: "home_model_whiteboardEraser",
+                name: "hifi_model_whiteboardEraser",
                 modelURL: ERASER_MODEL_URL,
                 position: eraserPosition,
                 script: ERASER_SCRIPT_URL,
                 shapeType: "box",
+                lifetime: 86400,
                 dimensions: {
                     x: 0.0858,
                     y: 0.0393,

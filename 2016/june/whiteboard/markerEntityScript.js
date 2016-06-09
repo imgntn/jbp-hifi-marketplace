@@ -1,6 +1,5 @@
 //
 //  markerTipEntityScript.js
-//  examples/homeContent/markerTipEntityScript
 //
 //  Created by Eric Levin on 2/17/15.
 //  Copyright 2016 High Fidelity, Inc.
@@ -9,7 +8,6 @@
 
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
-
 
 
 (function() {
@@ -37,7 +35,7 @@
         _this.strokes = [];
         _this.PAINTING_TRIGGER_THRESHOLD = 0.2;
         _this.STROKE_NAME = "hifi_polyline_markerStroke";
-        _this.WHITEBOARD_SURFACE_NAME = "hifi_box_whiteboardDrawingSurface"
+        _this.WHITEBOARD_SURFACE_NAME = "hifi-whiteboardDrawingSurface"
         _this.MARKER_RESET_WAIT_TIME = 3000;
     };
 
@@ -68,7 +66,6 @@
             });
 
         },
-
 
         continueEquip: function() {
             // cast a ray from marker and see if it hits anything
@@ -120,12 +117,7 @@
                 position: position,
                 textures: _this.MARKER_TEXTURE_URL,
                 color: _this.markerColor,
-                lifetime: 5000,
-                userData: JSON.stringify({
-                    'hifiHomeKey': {
-                        'reset': true
-                    }
-                }),
+                lifetime: 5000
             });
 
             _this.linePoints = [];
@@ -208,6 +200,5 @@
         }
     };
 
-    // entity scripts always need to return a newly constructed object of our type
     return new MarkerTip();
 });

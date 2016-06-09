@@ -1,3 +1,11 @@
+//  Created by James B. Pollack @imgntn 6/8/2016
+//  Copyright 2016 High Fidelity, Inc.
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+//
+
 (function() {
 
     var _this;

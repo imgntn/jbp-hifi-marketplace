@@ -1,6 +1,5 @@
 //
 //  eraserEntityScript.js
-//  examples/homeContent/eraserEntityScript
 //
 //  Created by Eric Levin on 2/17/15.
 //  Copyright 2016 High Fidelity, Inc.
@@ -9,15 +8,16 @@
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 
-
-
 (function() {
     Script.include('http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/utils.js');
+
     var TRIGGER_CONTROLS = [
         Controller.Standard.LT,
         Controller.Standard.RT,
     ];
+
     var _this;
+
     Eraser = function() {
         _this = this;
 
@@ -32,11 +32,12 @@
         startEquip: function(id, params) {
             _this.equipped = true;
             _this.hand = params[0] == "left" ? 0 : 1;
-            // We really only need to grab position of marker strokes once, and then just check to see if eraser comes near enough to those strokes 
+            
             Overlays.editOverlay(_this.searchSphere, {
                 visible: true
             });
         },
+
         continueEquip: function() {
             _this.eraserPosition = Entities.getEntityProperties(_this.entityID, "position").position;
             Overlays.editOverlay(_this.searchSphere, {
@@ -47,7 +48,6 @@
                 _this.continueHolding();
             }
         },
-
 
         continueHolding: function() {
             var strokeIDs = Entities.findEntities(_this.eraserPosition, _this.ERASER_TO_STROKE_SEARCH_RADIUS);
@@ -88,6 +88,5 @@
         }
     };
 
-    // entity scripts always need to return a newly constructed object of our type
     return new Eraser();
 });
