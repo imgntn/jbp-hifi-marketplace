@@ -2,6 +2,7 @@
 //  markerTipEntityScript.js
 //
 //  Created by Eric Levin on 2/17/15.
+//  Additions by James B. Pollack @imgntn 6/9/2016
 //  Copyright 2016 High Fidelity, Inc.
 //
 //  This script provides the logic for an object to draw marker strokes on its associated whiteboard
@@ -12,10 +13,6 @@
 (function() {
 
     Script.include('http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/utils.js');
-    var TRIGGER_CONTROLS = [
-        Controller.Standard.LT,
-        Controller.Standard.RT,
-    ];
 
     var MAX_POINTS_PER_STROKE = 40;
     var _this;
@@ -28,89 +25,23 @@
             min: 0.002,
             max: 0.01
         };
-        _this.DRAW_ON_BOARD_DISTANCE = 0.1;
-        _this.MAX_MARKER_TO_BOARD_DISTANCE = 1.4;
         _this.MIN_DISTANCE_BETWEEN_POINTS = 0.002;
         _this.MAX_DISTANCE_BETWEEN_POINTS = 0.1;
         _this.strokes = [];
-        _this.PAINTING_TRIGGER_THRESHOLD = 0.2;
         _this.STROKE_NAME = "hifi_polyline_markerStroke";
         _this.WHITEBOARD_SURFACE_NAME = "hifi-whiteboardDrawingSurface"
-        _this.MARKER_RESET_WAIT_TIME = 3000;
     };
 
     MarkerTip.prototype = {
-
-        // startEquip: function(id, params) {
-        //     print('start equip')
-        //     _this.whiteboards = [];
-        //     _this.hand = params[0] == "left" ? 0 : 1;
-        //     _this.markerColor = getEntityUserData(_this.entityID).markerColor;
-        //     // search for whiteboards
-        //     var markerPosition = Entities.getEntityProperties(_this.entityID, "position").position;
-        //     var results = Entities.findEntities(markerPosition, 10);
-        //     results.forEach(function(entity) {
-        //         var entityName = Entities.getEntityProperties(entity, "name").name;
-        //         if (entityName === _this.WHITEBOARD_SURFACE_NAME) {
-        //             _this.whiteboards.push(entity);
-        //         }
-        //     });
-        // },
-
-        // releaseEquip: function() {
-        //     _this.resetStroke();
-        //     Overlays.editOverlay(_this.laserPointer, {
-        //         visible: false
-        //     });
-
-        // },
-
-
-        // continueEquip: function() {
-        //     // cast a ray from marker and see if it hits anything
-        //     var markerProps = Entities.getEntityProperties(_this.entityID, ["position", "rotation"]);
-
-        //     var pickRay = {
-        //         origin: markerProps.position,
-        //         direction: Quat.getFront(markerProps.rotation)
-        //     }
-        //     var intersection = Entities.findRayIntersectionBlocking(pickRay, true, _this.whiteboards);
-
-        //     if (intersection.intersects && Vec3.distance(intersection.intersection, markerProps.position) < _this.MAX_MARKER_TO_BOARD_DISTANCE) {
-        //         _this.currentWhiteboard = intersection.entityID;
-        //         var whiteboardRotation = Entities.getEntityProperties(_this.currentWhiteboard, "rotation").rotation;
-        //         _this.whiteboardNormal = Quat.getFront(whiteboardRotation);
-        //         Overlays.editOverlay(_this.laserPointer, {
-        //             visible: true,
-        //             position: intersection.intersection,
-        //             rotation: whiteboardRotation
-        //         })
-        //         _this.triggerValue = Controller.getValue(TRIGGER_CONTROLS[_this.hand]);
-        //         if (_this.triggerValue > _this.PAINTING_TRIGGER_THRESHOLD) {
-        //             _this.paint(intersection.intersection)
-        //         } else {
-        //             _this.resetStroke();
-        //         }
-        //     } else {
-        //         if (_this.currentStroke) {
-        //             _this.resetStroke();
-        //         }
-
-        //         Overlays.editOverlay(_this.laserPointer, {
-        //             visible: false
-        //         });
-        //     }
-
-        // },
-
 
         startNearGrab: function() {
             print('start grab')
             _this.whiteboards = [];
             _this.markerColor = getEntityUserData(_this.entityID).markerColor;
-            // search for whiteboards
-            var markerPosition = Entities.getEntityProperties(_this.entityID, "position").position;
-            var results = Entities.findEntities(markerPosition, 10);
+            var markerProps = Entities.getEntityProperties(_this.entityID);
+            _this.DRAW_ON_BOARD_DISTANCE = markerProps.dimensions.z/2;
+            var markerPosition = markerProps.position;
+            var results = Entities.findEntities(markerPosition, 5);
             results.forEach(function(entity) {
                 var entityName = Entities.getEntityProperties(entity, "name").name;
                 if (entityName === _this.WHITEBOARD_SURFACE_NAME) {
@@ -122,20 +53,27 @@
 
         releaseGrab: function() {
             _this.resetStroke();
-            Overlays.editOverlay(_this.laserPointer, {
-                visible: false
-            });
 
         },
         continueNearGrab: function() {
             // cast a ray from marker and see if it hits anything
-            var markerProps = Entities.getEntityProperties(_this.entityID, ["position", "rotation"]);
+            var markerProps = Entities.getEntityProperties(_this.entityID);
+
+            //need to back up the ray to the back of the marker 
+
+            var markerFront = Quat.getFront(markerProps.rotation);
+            var howFarBack = markerProps.dimensions.z / 2;
+            var pulledBack = Vec3.multiply(markerFront, -howFarBack);
+            var backedOrigin = Vec3.sum(markerProps.position, pulledBack);
+
+            print('BACKED ORIGIN :' + JSON.stringify(backedOrigin));
+            print('markerProps.position :' + JSON.stringify(markerProps.position));
 
             var pickRay = {
-                origin: markerProps.position,
+                origin: backedOrigin,
                 direction: Quat.getFront(markerProps.rotation)
             }
-            var intersection = Entities.findRayIntersectionBlocking(pickRay, true, _this.whiteboards);
+            var intersection = Entities.findRayIntersection(pickRay, true, _this.whiteboards);
 
             if (intersection.intersects && Vec3.distance(intersection.intersection, markerProps.position) <= _this.DRAW_ON_BOARD_DISTANCE) {
                 _this.currentWhiteboard = intersection.entityID;
@@ -195,7 +133,8 @@
             _this.normals.push(_this.whiteboardNormal);
 
             var strokeWidths = [];
-            for (var i = 0; i < _this.linePoints.length; i++) {
+            var i;
+            for (i = 0; i < _this.linePoints.length; i++) {
                 // Create a temp array of stroke widths for calligraphy effect - start and end should be less wide
                 var pointsFromCenter = Math.abs(_this.linePoints.length / 2 - i);
                 var pointWidth = map(pointsFromCenter, 0, this.linePoints.length / 2, _this.STROKE_WIDTH_RANGE.max, this.STROKE_WIDTH_RANGE.min);
@@ -229,21 +168,9 @@
 
         preload: function(entityID) {
             this.entityID = entityID;
-            _this.laserPointer = Overlays.addOverlay("circle3d", {
-                color: {
-                    red: 220,
-                    green: 35,
-                    blue: 53
-                },
-                solid: true,
-                size: 0.01,
-            });
-
         },
 
-        unload: function() {
-            Overlays.deleteOverlay(_this.laserPointer);
-        }
+        unload: function() {}
     };
 
     return new MarkerTip();

@@ -13,20 +13,18 @@
     Swiper = function() {
         _this = this;
     }
-
+    print('swiper cmon work!!')
     Swiper.prototype = {
         busy: false,
         preload: function(entityID) {
             this.entityID = entityID;
-        },
-        unload: function() {
-
+            print('swiper preload, should connect update loop')
+            Script.update.connect(this.update);
         },
         clickReleaseOnEntity: function() {
             this.createSupplies();
         },
         update: function() {
-
             if (_this.busy === true) {
                 return;
             }
@@ -37,8 +35,8 @@
             var leftHandPosition = MyAvatar.getLeftPalmPosition();
             var rightHandPosition = MyAvatar.getRightPalmPosition();
 
-            var rightDistance = Vec3.distance(leftHandPosition, position)
-            var leftDistance = Vec3.distance(rightHandPosition, position)
+            var leftDistance = Vec3.distance(leftHandPosition, position)
+            var rightDistance = Vec3.distance(rightHandPosition, position)
 
             if (rightDistance < TRIGGER_THRESHOLD || leftDistance < TRIGGER_THRESHOLD) {
                 _this.createSupplies();
@@ -48,6 +46,7 @@
                 }, 2000)
             }
         },
+
         createSupplies: function() {
             var myProperties = Entities.getEntityProperties(this.entityID);
 
@@ -55,6 +54,9 @@
             Entities.callEntityMethod(myProperties.parentID, "createEraser");
 
         },
+        unload: function() {
+            Script.update.disconnect(this.update);
+        }
 
     }
     return new Swiper

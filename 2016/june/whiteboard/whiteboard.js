@@ -53,14 +53,12 @@
                 blue: 200
             });
 
-            markerPosition = Vec3.sum(markerPosition, Vec3.multiply(-0.2, Quat.getFront(_this.orientation)));
             _this.createMarker(modelURLS[1], markerPosition, {
                 red: 200,
                 green: 10,
                 blue: 10
             });
 
-            markerPosition = Vec3.sum(markerPosition, Vec3.multiply(0.4, Quat.getFront(_this.orientation)));
             _this.createMarker(modelURLS[2], markerPosition, {
                 red: 10,
                 green: 10,
