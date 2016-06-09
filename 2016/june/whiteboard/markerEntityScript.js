@@ -9,7 +9,6 @@
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 
-
 (function() {
 
     Script.include('http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/utils.js');
@@ -29,6 +28,7 @@
             min: 0.002,
             max: 0.01
         };
+        _this.DRAW_ON_BOARD_DISTANCE = 0.1;
         _this.MAX_MARKER_TO_BOARD_DISTANCE = 1.4;
         _this.MIN_DISTANCE_BETWEEN_POINTS = 0.002;
         _this.MAX_DISTANCE_BETWEEN_POINTS = 0.1;
@@ -41,33 +41,93 @@
 
     MarkerTip.prototype = {
 
-        startEquip: function(id, params) {
-            print('start equip')
+        // startEquip: function(id, params) {
+        //     print('start equip')
+        //     _this.whiteboards = [];
+        //     _this.hand = params[0] == "left" ? 0 : 1;
+        //     _this.markerColor = getEntityUserData(_this.entityID).markerColor;
+        //     // search for whiteboards
+        //     var markerPosition = Entities.getEntityProperties(_this.entityID, "position").position;
+        //     var results = Entities.findEntities(markerPosition, 10);
+        //     results.forEach(function(entity) {
+        //         var entityName = Entities.getEntityProperties(entity, "name").name;
+        //         if (entityName === _this.WHITEBOARD_SURFACE_NAME) {
+        //             _this.whiteboards.push(entity);
+        //         }
+        //     });
+        // },
+
+        // releaseEquip: function() {
+        //     _this.resetStroke();
+        //     Overlays.editOverlay(_this.laserPointer, {
+        //         visible: false
+        //     });
+
+        // },
+
+
+        // continueEquip: function() {
+        //     // cast a ray from marker and see if it hits anything
+        //     var markerProps = Entities.getEntityProperties(_this.entityID, ["position", "rotation"]);
+
+        //     var pickRay = {
+        //         origin: markerProps.position,
+        //         direction: Quat.getFront(markerProps.rotation)
+        //     }
+        //     var intersection = Entities.findRayIntersectionBlocking(pickRay, true, _this.whiteboards);
+
+        //     if (intersection.intersects && Vec3.distance(intersection.intersection, markerProps.position) < _this.MAX_MARKER_TO_BOARD_DISTANCE) {
+        //         _this.currentWhiteboard = intersection.entityID;
+        //         var whiteboardRotation = Entities.getEntityProperties(_this.currentWhiteboard, "rotation").rotation;
+        //         _this.whiteboardNormal = Quat.getFront(whiteboardRotation);
+        //         Overlays.editOverlay(_this.laserPointer, {
+        //             visible: true,
+        //             position: intersection.intersection,
+        //             rotation: whiteboardRotation
+        //         })
+        //         _this.triggerValue = Controller.getValue(TRIGGER_CONTROLS[_this.hand]);
+        //         if (_this.triggerValue > _this.PAINTING_TRIGGER_THRESHOLD) {
+        //             _this.paint(intersection.intersection)
+        //         } else {
+        //             _this.resetStroke();
+        //         }
+        //     } else {
+        //         if (_this.currentStroke) {
+        //             _this.resetStroke();
+        //         }
+
+        //         Overlays.editOverlay(_this.laserPointer, {
+        //             visible: false
+        //         });
+        //     }
+
+        // },
+
+
+        startNearGrab: function() {
+            print('start grab')
             _this.whiteboards = [];
-            _this.equipped = true;
-            _this.hand = params[0] == "left" ? 0 : 1;
             _this.markerColor = getEntityUserData(_this.entityID).markerColor;
             // search for whiteboards
             var markerPosition = Entities.getEntityProperties(_this.entityID, "position").position;
-            var entities = Entities.findEntities(markerPosition, 10);
-            entities.forEach(function(entity) {
-
+            var results = Entities.findEntities(markerPosition, 10);
+            results.forEach(function(entity) {
                 var entityName = Entities.getEntityProperties(entity, "name").name;
                 if (entityName === _this.WHITEBOARD_SURFACE_NAME) {
                     _this.whiteboards.push(entity);
                 }
             });
+
         },
 
-        releaseEquip: function() {
+        releaseGrab: function() {
             _this.resetStroke();
             Overlays.editOverlay(_this.laserPointer, {
                 visible: false
             });
 
         },
-
-        continueEquip: function() {
+        continueNearGrab: function() {
             // cast a ray from marker and see if it hits anything
             var markerProps = Entities.getEntityProperties(_this.entityID, ["position", "rotation"]);
 
@@ -77,31 +137,19 @@
             }
             var intersection = Entities.findRayIntersectionBlocking(pickRay, true, _this.whiteboards);
 
-            if (intersection.intersects && Vec3.distance(intersection.intersection, markerProps.position) < _this.MAX_MARKER_TO_BOARD_DISTANCE) {
+            if (intersection.intersects && Vec3.distance(intersection.intersection, markerProps.position) <= _this.DRAW_ON_BOARD_DISTANCE) {
                 _this.currentWhiteboard = intersection.entityID;
                 var whiteboardRotation = Entities.getEntityProperties(_this.currentWhiteboard, "rotation").rotation;
                 _this.whiteboardNormal = Quat.getFront(whiteboardRotation);
-                Overlays.editOverlay(_this.laserPointer, {
-                    visible: true,
-                    position: intersection.intersection,
-                    rotation: whiteboardRotation
-                })
-                _this.triggerValue = Controller.getValue(TRIGGER_CONTROLS[_this.hand]);
-                if (_this.triggerValue > _this.PAINTING_TRIGGER_THRESHOLD) {
-                    _this.paint(intersection.intersection)
-                } else {
-                    _this.resetStroke();
-                }
+
+                _this.paint(intersection.intersection)
+
             } else {
                 if (_this.currentStroke) {
                     _this.resetStroke();
                 }
 
-                Overlays.editOverlay(_this.laserPointer, {
-                    visible: false
-                });
             }
-
         },
 
         newStroke: function(position) {
@@ -168,6 +216,7 @@
                 _this.oldPosition = position;
             }
         },
+
         resetStroke: function() {
 
             Entities.editEntity(_this.currentStroke, {
@@ -194,9 +243,6 @@
 
         unload: function() {
             Overlays.deleteOverlay(_this.laserPointer);
-            _this.strokes.forEach(function(stroke) {
-                Entities.deleteEntity(stroke);
-            });
         }
     };
 

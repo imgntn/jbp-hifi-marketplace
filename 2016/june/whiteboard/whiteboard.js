@@ -38,6 +38,7 @@
 
         },
         createMarkers: function() {
+            _this.setup();
             var modelURLS = [
                 "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/marker-blue.fbx",
                 "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/marker-red.fbx",
@@ -128,7 +129,7 @@
 
         },
         createEraser: function() {
-
+            _this.setup();
             var ERASER_MODEL_URL = "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/eraser-2.fbx";
 
             var eraserPosition = Vec3.sum(_this.spawnPosition, Vec3.multiply(Quat.getFront(_this.orientation), -0.1));
