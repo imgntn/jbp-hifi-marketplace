@@ -13,12 +13,11 @@
     Swiper = function() {
         _this = this;
     }
-    print('swiper cmon work!!')
+
     Swiper.prototype = {
         busy: false,
         preload: function(entityID) {
             this.entityID = entityID;
-            print('swiper preload, should connect update loop')
             Script.update.connect(this.update);
         },
         clickReleaseOnEntity: function() {
@@ -30,7 +29,7 @@
             }
 
             var position = Entities.getEntityProperties(_this.entityID).position;
-            var TRIGGER_THRESHOLD = 0.075;
+            var TRIGGER_THRESHOLD = 0.11;
 
             var leftHandPosition = MyAvatar.getLeftPalmPosition();
             var rightHandPosition = MyAvatar.getRightPalmPosition();

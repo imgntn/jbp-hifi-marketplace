@@ -44,6 +44,15 @@
 
         },
 
+        startEquip: function() {
+            _this.startNearGrab();
+        },
+
+        continueEquip: function() {
+            _this.continueNearGrab();
+        },
+
+
     };
 
     return new Eraser();

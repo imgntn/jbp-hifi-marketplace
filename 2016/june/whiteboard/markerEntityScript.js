@@ -35,11 +35,10 @@
     MarkerTip.prototype = {
 
         startNearGrab: function() {
-            print('start grab')
             _this.whiteboards = [];
             _this.markerColor = getEntityUserData(_this.entityID).markerColor;
             var markerProps = Entities.getEntityProperties(_this.entityID);
-            _this.DRAW_ON_BOARD_DISTANCE = markerProps.dimensions.z/2;
+            _this.DRAW_ON_BOARD_DISTANCE = markerProps.dimensions.z / 2;
             var markerPosition = markerProps.position;
             var results = Entities.findEntities(markerPosition, 5);
             results.forEach(function(entity) {
@@ -55,6 +54,7 @@
             _this.resetStroke();
 
         },
+
         continueNearGrab: function() {
             // cast a ray from marker and see if it hits anything
             var markerProps = Entities.getEntityProperties(_this.entityID);
@@ -65,9 +65,6 @@
             var howFarBack = markerProps.dimensions.z / 2;
             var pulledBack = Vec3.multiply(markerFront, -howFarBack);
             var backedOrigin = Vec3.sum(markerProps.position, pulledBack);
-
-            print('BACKED ORIGIN :' + JSON.stringify(backedOrigin));
-            print('markerProps.position :' + JSON.stringify(markerProps.position));
 
             var pickRay = {
                 origin: backedOrigin,
@@ -88,6 +85,14 @@
                 }
 
             }
+        },
+
+        startEquip: function() {
+            _this.startNearGrab();
+        },
+
+        continueEquip: function() {
+            _this.continueNearGrab();
         },
 
         newStroke: function(position) {
@@ -170,7 +175,6 @@
             this.entityID = entityID;
         },
 
-        unload: function() {}
     };
 
     return new MarkerTip();

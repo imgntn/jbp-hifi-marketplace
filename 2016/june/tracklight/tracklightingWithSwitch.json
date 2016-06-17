@@ -1,0 +1,298 @@
+{
+    "Entities": [
+        {
+            "clientOnly": 0,
+            "color": {
+                "blue": 48,
+                "green": 48,
+                "red": 48
+            },
+            "created": "2016-06-16T23:57:33Z",
+            "cutoff": 45,
+            "dimensions": {
+                "x": 5.6568541526794434,
+                "y": 5.6568541526794434,
+                "z": 8
+            },
+            "exponent": 45,
+            "falloffRadius": 1,
+            "id": "{bfc25f5b-f5e7-4ac4-aec1-6b3d4cc9ad81}",
+            "intensity": 90,
+            "isSpotlight": 1,
+            "name": "tracklight_spotlight",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{ef0e5408-9fb4-4839-a58d-3b4ab3354ac4}",
+            "position": {
+                "x": 0.077368408441543579,
+                "y": -0.077184051275253296,
+                "z": -0.18114560842514038
+            },
+            "queryAACube": {
+                "scale": 13.856406211853027,
+                "x": -7.6773967742919922,
+                "y": -8.7645492553710938,
+                "z": -7.6736311912536621
+            },
+            "rotation": {
+                "w": -0.9683833122253418,
+                "x": 0.20482182502746582,
+                "y": 0.13569843769073486,
+                "z": 0.042984724044799805
+            },
+            "type": "Light",
+            "visible": 0
+        },
+        {
+            "clientOnly": 0,
+            "color": {
+                "blue": 48,
+                "green": 48,
+                "red": 48
+            },
+            "created": "2016-06-16T23:57:33Z",
+            "cutoff": 45,
+            "dimensions": {
+                "x": 5.6568541526794434,
+                "y": 5.6568541526794434,
+                "z": 8
+            },
+            "exponent": 45,
+            "falloffRadius": 1,
+            "id": "{f3edf06b-cd07-4cdd-8021-5864efc417de}",
+            "intensity": 90,
+            "isSpotlight": 1,
+            "name": "tracklight_spotlight",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{bf8eec65-3f55-4673-924c-440cc908aa43}",
+            "position": {
+                "x": 0.062691286206245422,
+                "y": -0.061447501182556152,
+                "z": -0.19254997372627258
+            },
+            "queryAACube": {
+                "scale": 13.856406211853027,
+                "x": -8.093536376953125,
+                "y": -8.7645511627197266,
+                "z": -7.6828179359436035
+            },
+            "rotation": {
+                "w": -0.9683527946472168,
+                "x": 0.20497441291809082,
+                "y": 0.13569843769073486,
+                "z": 0.042984724044799805
+            },
+            "type": "Light",
+            "visible": 0
+        },
+        {
+            "animation": {
+                "currentFrame": 3.679351806640625,
+                "firstFrame": 3,
+                "hold": 1,
+                "lastFrame": 4,
+                "running": 1,
+                "url": "http://hifi-content.s3.amazonaws.com/james/tracklight/lightswitch.fbx"
+            },
+            "clientOnly": 0,
+            "created": "2016-06-16T23:57:33Z",
+            "dimensions": {
+                "x": 0.024527644738554955,
+                "y": 0.17280912399291992,
+                "z": 0.097321800887584686
+            },
+            "id": "{ac0e2603-42a1-4d9d-86fb-e7f47c9f55ca}",
+            "modelURL": "http://hifi-content.s3.amazonaws.com/james/tracklight/lightswitch.fbx",
+            "name": "tracklight_switch",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{2009f45c-ea34-415b-a783-67983ffef24a}",
+            "position": {
+                "x": 0.47509765625,
+                "y": -0.2779541015625,
+                "z": -0.01263427734375
+            },
+            "queryAACube": {
+                "scale": 0.59952080249786377,
+                "x": -0.58485358953475952,
+                "y": -2.1100039482116699,
+                "z": -1.042014479637146
+            },
+            "rotation": {
+                "w": 0.68148314952850342,
+                "x": -1.52587890625e-05,
+                "y": -0.73180747032165527,
+                "z": -4.57763671875e-05
+            },
+            "script": "http://hifi-content.s3.amazonaws.com/james/tracklight/tracklightSwitch.js",
+            "type": "Model",
+            "userData": "{\"grabbableKey\":{\"wantsTrigger\":true},\"home-switch\":{\"state\":\"off\"}}"
+        },
+        {
+            "clientOnly": 0,
+            "created": "2016-06-16T23:57:33Z",
+            "dimensions": {
+                "x": 0.082639545202255249,
+                "y": 0.090995259582996368,
+                "z": 0.12856078147888184
+            },
+            "id": "{ef0e5408-9fb4-4839-a58d-3b4ab3354ac4}",
+            "modelURL": "http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx",
+            "name": "tracklight_lamp",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{2009f45c-ea34-415b-a783-67983ffef24a}",
+            "position": {
+                "x": -0.014546792022883892,
+                "y": -0.094299584627151489,
+                "z": -0.0057577989064157009
+            },
+            "queryAACube": {
+                "scale": 13.856406211853027,
+                "x": -7.6774077415466309,
+                "y": -9.8348274230957031,
+                "z": -7.673612117767334
+            },
+            "rotation": {
+                "w": -0.82955670356750488,
+                "x": 0.5399709939956665,
+                "y": -0.12635993957519531,
+                "z": 0.065629005432128906
+            },
+            "textures": "{\"Tex.light-off\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\",\"Tex.light.on\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\",\"Texture\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\"}",
+            "type": "Model"
+        },
+        {
+            "clientOnly": 0,
+            "color": {
+                "blue": 48,
+                "green": 48,
+                "red": 48
+            },
+            "created": "2016-06-16T23:57:33Z",
+            "cutoff": 90,
+            "dimensions": {
+                "x": 8,
+                "y": 8,
+                "z": 8
+            },
+            "exponent": 60,
+            "falloffRadius": 10,
+            "id": "{46d16ad9-abf3-4d0c-8234-7f8b70eafb9e}",
+            "intensity": 75,
+            "isSpotlight": 1,
+            "name": "tracklight_spotlight",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{d6e26d68-d4e7-4d47-8e1d-9b46b465835d}",
+            "position": {
+                "x": 0.070519573986530304,
+                "y": -0.093549974262714386,
+                "z": -0.17546939849853516
+            },
+            "queryAACube": {
+                "scale": 41.569217681884766,
+                "x": -21.920082092285156,
+                "y": -23.468852996826172,
+                "z": -19.896993637084961
+            },
+            "rotation": {
+                "w": -0.9683833122253418,
+                "x": 0.20482182502746582,
+                "y": 0.13569843769073486,
+                "z": 0.042984724044799805
+            },
+            "type": "Light",
+            "visible": 0
+        },
+        {
+            "clientOnly": 0,
+            "created": "2016-06-16T23:57:33Z",
+            "dimensions": {
+                "x": 0.082639545202255249,
+                "y": 0.090995259582996368,
+                "z": 0.12856078147888184
+            },
+            "id": "{bf8eec65-3f55-4673-924c-440cc908aa43}",
+            "modelURL": "http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx",
+            "name": "tracklight_lamp",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{2009f45c-ea34-415b-a783-67983ffef24a}",
+            "position": {
+                "x": -0.41297167539596558,
+                "y": -0.094311974942684174,
+                "z": 0.0017803405644372106
+            },
+            "queryAACube": {
+                "scale": 13.856406211853027,
+                "x": -8.0935468673706055,
+                "y": -9.8348302841186523,
+                "z": -7.6827993392944336
+            },
+            "rotation": {
+                "w": -0.82955670356750488,
+                "x": 0.5399709939956665,
+                "y": -0.12635993957519531,
+                "z": 0.065629005432128906
+            },
+            "textures": "{\"Tex.light-off\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\",\"Tex.light.on\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\",\"Texture\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\"}",
+            "type": "Model"
+        },
+        {
+            "clientOnly": 0,
+            "created": "2016-06-16T23:57:33Z",
+            "dimensions": {
+                "x": 1,
+                "y": 0.078699998557567596,
+                "z": 0.028200000524520874
+            },
+            "id": "{2009f45c-ea34-415b-a783-67983ffef24a}",
+            "modelURL": "http://hifi-content.s3.amazonaws.com/james/tracklight/track.fbx",
+            "name": "tracklight_track",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "queryAACube": {
+                "scale": 41.569217681884766,
+                "x": -21.920082092285156,
+                "y": -23.468852996826172,
+                "z": -19.896993637084961
+            },
+            "rotation": {
+                "w": 1,
+                "x": -1.52587890625e-05,
+                "y": -1.52587890625e-05,
+                "z": -1.52587890625e-05
+            },
+            "type": "Model"
+        },
+        {
+            "clientOnly": 0,
+            "created": "2016-06-16T23:57:33Z",
+            "dimensions": {
+                "x": 0.082639545202255249,
+                "y": 0.090995259582996368,
+                "z": 0.12856078147888184
+            },
+            "id": "{d6e26d68-d4e7-4d47-8e1d-9b46b465835d}",
+            "modelURL": "http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx",
+            "name": "tracklight_lamp",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{2009f45c-ea34-415b-a783-67983ffef24a}",
+            "position": {
+                "x": 0.37682056427001953,
+                "y": -0.094287574291229248,
+                "z": -0.0079003097489476204
+            },
+            "queryAACube": {
+                "scale": 41.569217681884766,
+                "x": -21.920082092285156,
+                "y": -23.468852996826172,
+                "z": -19.896993637084961
+            },
+            "rotation": {
+                "w": -0.82955670356750488,
+                "x": 0.5399709939956665,
+                "y": -0.12635993957519531,
+                "z": 0.065629005432128906
+            },
+            "textures": "{\"Tex.light-off\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\",\"Tex.light.on\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\",\"Texture\":\"http://hifi-content.s3.amazonaws.com/james/tracklight/lamp1.fbx/justlamp.fbm/bulb-tex-off.jpg\"}",
+            "type": "Model"
+        }
+    ],
+    "Version": 60
+}

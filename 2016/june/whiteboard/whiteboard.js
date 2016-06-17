@@ -9,8 +9,8 @@
 (function() {
 
     var _this;
-    var MARKER_SCRIPT_URL = "http://hifi-content.s3.amazonaws.com/james/whiteboard/markerEntityScript.js";
-    var ERASER_SCRIPT_URL = "http://hifi-content.s3.amazonaws.com/james/whiteboard/eraserEntityScript.js";
+    var MARKER_SCRIPT_URL = "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/markerEntityScript.js";
+    var ERASER_SCRIPT_URL = "http://hifi-content.s3.amazonaws.com/Examples%20Content/production/whiteboard/eraserEntityScript.js";
 
     Whiteboard = function() {
         _this = this;
