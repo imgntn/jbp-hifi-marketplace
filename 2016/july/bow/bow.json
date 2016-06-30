@@ -1,0 +1,74 @@
+{
+    "Entities": [
+        {
+            "clientOnly": 0,
+            "collisionless": 1,
+            "created": "2016-06-29T19:04:05Z",
+            "dimensions": {
+                "x": 5,
+                "y": 5,
+                "z": 5
+            },
+            "id": "{ecbd09a2-8cd0-4fc9-9344-59e3e41fd3f2}",
+            "ignoreForCollisions": 1,
+            "linePoints": [
+                {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                {
+                    "x": 0,
+                    "y": -1.2000000476837158,
+                    "z": 0
+                }
+            ],
+            "lineWidth": 5,
+            "name": "Hifi-Bow-Pre-Notch-String",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "parentID": "{3911b3c1-8827-4d15-85e5-6161358fc648}",
+            "position": {
+                "x": 0,
+                "y": 0.600006103515625,
+                "z": 0.09999847412109375
+            },
+            "queryAACube": {
+                "scale": 8.6602544784545898,
+                "x": 1097.91259765625,
+                "y": 456.87796020507812,
+                "z": -83.358314514160156
+            },
+            "type": "Line",
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}"
+        },
+        {
+            "clientOnly": 0,
+            "collidesWith": "static,dynamic,kinematic,",
+            "collisionMask": 7,
+            "collisionsWillMove": 1,
+            "compoundShapeURL": "http://mpassets.highfidelity.com/32fc6d32-27a2-428e-937e-869f3f05e8e1-v1/bow_collision_hull.obj",
+            "created": "2016-06-29T19:04:05Z",
+            "dimensions": {
+                "x": 0.039999999105930328,
+                "y": 1.2999999523162842,
+                "z": 0.20999999344348907
+            },
+            "dynamic": 1,
+            "id": "{3911b3c1-8827-4d15-85e5-6161358fc648}",
+            "modelURL": "http://mpassets.highfidelity.com/32fc6d32-27a2-428e-937e-869f3f05e8e1-v1/bow-deadly.fbx",
+            "name": "Hifi-Bow",
+            "owningAvatarID": "{00000000-0000-0000-0000-000000000000}",
+            "queryAACube": {
+                "scale": 1.3174595832824707,
+                "x": -0.65872979164123535,
+                "y": -0.65872979164123535,
+                "z": -0.65872979164123535
+            },
+            "script": "http://mpassets.highfidelity.com/32fc6d32-27a2-428e-937e-869f3f05e8e1-v1/bow.js",
+            "shapeType": "compound",
+            "type": "Model",
+            "userData": "{\"grabbableKey\":{\"invertSolidWhileHeld\":true},\"wearable\":{\"joints\":{\"RightHand\":[{\"x\":0.03960523009300232,\"y\":0.01979270577430725,\"z\":0.03294898942112923},{\"x\":-0.7257906794548035,\"y\":-0.4611682891845703,\"z\":0.4436084032058716,\"w\":-0.25251442193984985}],\"LeftHand\":[{\"x\":0.0055799782276153564,\"y\":0.04354757443070412,\"z\":0.05119767785072327},{\"x\":-0.14914104342460632,\"y\":0.6448180079460144,\"z\":-0.2888556718826294,\"w\":-0.6917579770088196}]}},\"bowKey\":{\"preNotchString\":\"{ecbd09a2-8cd0-4fc9-9344-59e3e41fd3f2}\"}}"
+        }
+    ],
+    "Version": 61
+}
